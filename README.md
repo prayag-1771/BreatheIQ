@@ -10,18 +10,18 @@
 </p>
 
 <p align="center">
-  <a href="https://youtu.be/rmrwR7-hI4U"><img src="https://img.shields.io/badge/Watch%20the%20demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch the video demo on YouTube"></a>
-  <a href="https://main.d3abjrsxzx174i.amplifyapp.com"><img src="https://img.shields.io/badge/Live%20dashboard-AWS%20Amplify-FF9900?style=for-the-badge&logo=awsamplify&logoColor=white" alt="Open the live dashboard"></a>
-  <a href="docs/BreatheIQ-Team-Purity.pptx"><img src="https://img.shields.io/badge/Presentation-PPTX-B7472A?style=for-the-badge&logo=microsoftpowerpoint&logoColor=white" alt="Download the presentation"></a>
+  <a href="https://youtu.be/rmrwR7-hI4U"><img src="docs/badges/watch-demo.svg" alt="Watch the video demo on YouTube"></a>
+  <a href="https://main.d3abjrsxzx174i.amplifyapp.com"><img src="docs/badges/live-dashboard.svg" alt="Open the live dashboard"></a>
+  <a href="docs/BreatheIQ-Team-Purity.pptx"><img src="docs/badges/presentation.svg" alt="Download the presentation"></a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Track-Air-0F766E?style=flat-square" alt="Track: Air">
-  <img src="https://img.shields.io/badge/Arduino-Mega%202560-00979D?style=flat-square&logo=arduino&logoColor=white" alt="Arduino Mega 2560">
-  <img src="https://img.shields.io/badge/ML-scikit--learn%20Random%20Forest-F7931E?style=flat-square&logo=scikitlearn&logoColor=white" alt="scikit-learn Random Forest">
-  <img src="https://img.shields.io/badge/Cloud-AWS-232F3E?style=flat-square" alt="AWS">
-  <img src="https://img.shields.io/badge/IaC-AWS%20CDK-232F3E?style=flat-square" alt="AWS CDK">
-  <img src="https://img.shields.io/badge/Dashboard-React%2019%20%2B%20TypeScript-3178C6?style=flat-square&logo=react&logoColor=white" alt="React 19 and TypeScript">
+  <img src="docs/badges/track-air.svg" alt="Track: Air">
+  <img src="docs/badges/arduino.svg" alt="Arduino Mega 2560">
+  <img src="docs/badges/ml.svg" alt="scikit-learn Random Forest">
+  <img src="docs/badges/cloud-aws.svg" alt="AWS">
+  <img src="docs/badges/iac-cdk.svg" alt="AWS CDK">
+  <img src="docs/badges/dashboard.svg" alt="React 19 and TypeScript">
 </p>
 
 > **Environmental Hacks · Track: Air** — *Pollution, exposure, and the days the AQI goes off the chart.*
@@ -46,7 +46,7 @@
 ## 🎬 Video demo
 
 <p align="center">
-  <a href="https://youtu.be/rmrwR7-hI4U"><img src="https://img.youtube.com/vi/rmrwR7-hI4U/maxresdefault.jpg" width="760" alt="BreatheIQ video demo on YouTube"></a>
+  <a href="https://youtu.be/rmrwR7-hI4U"><img src="docs/video-thumbnail.jpg" width="760" alt="BreatheIQ video demo on YouTube"></a>
   <br><sub>Click the image to watch on YouTube.</sub>
 </p>
 
