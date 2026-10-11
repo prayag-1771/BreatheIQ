@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/geist-mono";
+
+/* ── Design tokens ─────────────────────────────────────────────── */
+:root {
+  color-scheme: dark;
+  --bg: #0a0f14;
+  --surface: #101821;
+  --surface-2: #15202b;
+  --border: #1f2c39;
+  --border-strong: #2c3e50;
+  --text: #e6edf3;
+  --muted: #8796a5;
+  --accent: #5eead4;
+  --accent-ink: #042f2e;
+  --grid-line: rgba(135, 150, 165, 0.07);
+
+  /* CPCB AQI scale */
+  --aqi-good: #00b050;
+  --aqi-satisfactory: #92d050;
+  --aqi-moderate: #ffd400;
+  --aqi-poor: #ff9900;
+  --aqi-verypoor: #e5322d;
+  --aqi-severe: #7e0023;
+  --aqi-severe-ink: #ff6b8b;
+
+  /* chart series (validated categorical slots 1–3, dark steps) */
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+
+  --lcd-bg: #0f2a12;
+  --lcd-on: #9cff7a;
+  --lcd-off: rgba(156, 255, 122, 0.07);
+
+  --ok: #34d399;
+  --warn: #fbbf24;
+  --bad: #f87171;
+  --radius: 0.45rem;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f8fa;
+  --surface: #ffffff;
+  --surface-2: #eef2f5;
+  --border: #dde3e9;
+  --border-strong: #c3ccd5;
+  --text: #0e1722;
+  --muted: #5b6b7a;
+  --accent: #0f766e;
+  --accent-ink: #ffffff;
+  --grid-line: rgba(14, 23, 34, 0.05);
+  --aqi-severe-ink: #7e0023;
+
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+
+  --ok: #047857;
+  --warn: #a16207;
+  --bad: #b91c1c;
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --radius-card: var(--radius);
+}
+
+/* ── Base ──────────────────────────────────────────────────────── */
+html {
+  background: var(--bg);
+  scroll-padding-top: 5rem;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+  overflow-x: hidden;
+}
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* grid/flex children may shrink below content width (no page-level horizontal scroll) */
+.grid > * {
+  min-width: 0;
+}
+
+/* ruled background used behind hero/sections */
+.bg-ruled {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.micro {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* hatched alarm edge for "off the chart" */
+@keyframes hatch-slide {
+  to {
+    background-position: 40px 0;
+  }
+}
+.hatched {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--aqi-severe) 0 10px,
+    color-mix(in srgb, var(--aqi-verypoor) 70%, transparent) 10px 20px
+  );
+  background-size: 40px 40px;
+  animation: hatch-slide 1.4s linear infinite;
+}
+.alarm-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  padding: 4px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin {
+  animation: spin var(--spin-dur, 0.8s) linear infinite;
+}
+@keyframes pulse-soft {
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-soft {
+  animation: pulse-soft 1.2s ease-in-out infinite;
+}
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.dash-flow {
+  stroke-dasharray: 6 6;
+  animation: dash-flow 0.9s linear infinite;
+}
+
+/* thin scrollbars in consoles / tables */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
