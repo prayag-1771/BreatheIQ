@@ -1,0 +1,32 @@
+# dependencies & builds
+node_modules/
+dist/
+*.tsbuildinfo
+
+# large / non-code assets kept locally
+video/
+report/
+*.pdf
+*.mp4
+
+# office lock files, OS & editor noise
+~$*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# secrets
+.env
+.env.*
+
+# AWS: build output, deploy outputs and per-deployment endpoints (map key included)
+infra/node_modules/
+infra/cdk.out/
+infra/dist/
+infra/cdk-outputs.json
+breatheiq/public/aws-config.json
+
+# Python bytecode
+__pycache__/
+*.pyc
