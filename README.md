@@ -1,17 +1,40 @@
-# BreatheIQ
+<p align="center">
+  <img src="docs/logo.png" width="84" alt="BreatheIQ logo">
+</p>
 
-**Breathe easier between stations.** BreatheIQ measures the air inside train coaches, classifies it with a Random-Forest model, switches on ventilation and purification automatically, warns the passengers most at risk, and runs a playbook on the days the AQI goes off the chart. The whole pipeline runs on AWS.
+<h1 align="center">BreatheIQ</h1>
+
+<p align="center">
+  <b>Breathe easier between stations.</b><br>
+  Air-quality sensing, ML-controlled purification and a bad-day playbook for train coaches, running end to end on AWS.
+</p>
+
+<p align="center">
+  <a href="https://youtu.be/rmrwR7-hI4U"><img src="https://img.shields.io/badge/Watch%20the%20demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch the video demo on YouTube"></a>
+  <a href="https://main.d3abjrsxzx174i.amplifyapp.com"><img src="https://img.shields.io/badge/Live%20dashboard-AWS%20Amplify-FF9900?style=for-the-badge&logo=awsamplify&logoColor=white" alt="Open the live dashboard"></a>
+  <a href="docs/BreatheIQ-Team-Purity.pptx"><img src="https://img.shields.io/badge/Presentation-PPTX-B7472A?style=for-the-badge&logo=microsoftpowerpoint&logoColor=white" alt="Download the presentation"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Track-Air-0F766E?style=flat-square" alt="Track: Air">
+  <img src="https://img.shields.io/badge/Arduino-Mega%202560-00979D?style=flat-square&logo=arduino&logoColor=white" alt="Arduino Mega 2560">
+  <img src="https://img.shields.io/badge/ML-scikit--learn%20Random%20Forest-F7931E?style=flat-square&logo=scikitlearn&logoColor=white" alt="scikit-learn Random Forest">
+  <img src="https://img.shields.io/badge/Cloud-AWS-232F3E?style=flat-square" alt="AWS">
+  <img src="https://img.shields.io/badge/IaC-AWS%20CDK-232F3E?style=flat-square" alt="AWS CDK">
+  <img src="https://img.shields.io/badge/Dashboard-React%2019%20%2B%20TypeScript-3178C6?style=flat-square&logo=react&logoColor=white" alt="React 19 and TypeScript">
+</p>
 
 > **Environmental Hacks · Track: Air** — *Pollution, exposure, and the days the AQI goes off the chart.*
 
 | | |
 |---|---|
-| **Live dashboard** | **https://main.d3abjrsxzx174i.amplifyapp.com** |
-| **Presentation (PPT)** | [`docs/BreatheIQ-Team-Purity.pptx`](docs/BreatheIQ-Team-Purity.pptx) |
-| **Every AWS service and why** | [`AWS.md`](AWS.md) |
-| **Hardware build and wiring** | [`HARDWARE.md`](HARDWARE.md) |
+| 🌐 **Live deployment** | **https://main.d3abjrsxzx174i.amplifyapp.com** |
+| 🎬 **Video demo** | **https://youtu.be/rmrwR7-hI4U** |
+| 📊 **Presentation (PPT)** | [`docs/BreatheIQ-Team-Purity.pptx`](docs/BreatheIQ-Team-Purity.pptx) |
+| 🔧 **Hardware build and wiring** | [`HARDWARE.md`](HARDWARE.md) |
+| ☁️ **Every AWS service and why** | [`AWS.md`](AWS.md) |
 
-## Team Purity · Team ID `YGJPRG`
+## 👥 Team Purity · Team ID `YGJPRG`
 
 | Member | Role |
 |---|---|
@@ -20,19 +43,16 @@
 | Avishkar Jaiswal | Member |
 | Prayag Sharma | Member |
 
----
+## 🎬 Video demo
 
-## Screenshots
-
-| Live cabin | AWS pipeline (System → Cloud) |
-|---|---|
-| ![Live page: AQI gauge, LCD, the four Random-Forest heads and the relays](docs/screenshots/live.png) | ![The AWS pipeline with live numbers for IoT Core, Lambda, DynamoDB and Step Functions](docs/screenshots/aws-pipeline.png) |
-| **Bad-day playbook on AWS Step Functions** | **Fleet route map with pollution-zone geofences** |
-| ![A real Step Functions run: announcement in English and Hindi, Polly audio, SNS alert, incident report](docs/screenshots/bad-day-playbook.png) | ![Route from New Delhi to Prayagraj with geofences and the train](docs/screenshots/fleet-map.png) |
+<p align="center">
+  <a href="https://youtu.be/rmrwR7-hI4U"><img src="https://img.youtube.com/vi/rmrwR7-hI4U/maxresdefault.jpg" width="760" alt="BreatheIQ video demo on YouTube"></a>
+  <br><sub>Click the image to watch on YouTube.</sub>
+</p>
 
 ---
 
-## The problem
+## 🚆 The problem
 
 Indian Railways carries close to 2 crore (20 million) passengers a day. Coaches are cramped, turnover at every station is high and ventilation is weak. Air inside a coach can turn bad within minutes:
 
@@ -43,7 +63,7 @@ Indian Railways carries close to 2 crore (20 million) passengers a day. Coaches 
 
 The people who suffer most are the ones least able to cope: children, the elderly, people with asthma or COPD, pregnant passengers, and rail staff who spend whole shifts walking through every coach.
 
-## Our answer: three verbs, one for each part of the track
+## 💡 Our answer: three verbs, one for each part of the track
 
 | Track phrase | BreatheIQ | What it does |
 |---|---|---|
@@ -51,11 +71,11 @@ The people who suffer most are the ones least able to cope: children, the elderl
 | **Exposure** | **Warn the most exposed** | Each passenger group gets its own inhaled dose (PM2.5 × minutes × breathing factor) against the WHO 2021 and India NAAQS daily limits, the time left to the limit, and one plain sentence of advice. |
 | **The days the AQI goes off the chart** | **Change what happens** | Past AQI 500, **EventBridge** starts a **Step Functions** playbook: ventilation boost, a platform announcement in English and Hindi read aloud by **Amazon Polly**, alerts through **Amazon SNS**, a move to the cleanest coach, and an incident report in **Amazon S3**. |
 
-### Safety first: the ozone interlock
+### 🛡️ Safety first: the ozone interlock
 
 Ozone generators purify air but are harmful to people (CARB and the US EPA both warn against them in occupied spaces). In BreatheIQ the model may *ask* for ozone, but the interlock decides: ozone runs only when the **cabin is unoccupied** *and* estimated ozone stays **under 0.07 ppm (EPA 8-hour limit)**. Otherwise the exhaust fan and filtration run instead, and every decision is logged with its reason.
 
-### Who is most exposed
+### 🫁 Who is most exposed
 
 | Group | Why | Dose factor |
 |---|---|---|
@@ -67,7 +87,56 @@ Ozone generators purify air but are harmful to people (CARB and the US EPA both 
 
 ---
 
-## How it works
+## 🔧 The hardware prototype
+
+<p align="center">
+  <img src="docs/hardware-prototype-labelled.jpg" width="100%" alt="The BreatheIQ prototype on a wooden board, with numbered labels: 1 Arduino Mega 2560, 2 16x2 LCD, 3 DHT11, 4 MQ-2 and MQ-135 gas sensors, 5 PMS7003 dust sensor, 6 relay board, 7 exhaust fan, 8 two ozone generators">
+</p>
+
+| # | Part | Job |
+|:-:|---|---|
+| 1 | Arduino Mega 2560 | Runs the firmware and sends one frame every two seconds |
+| 2 | 16×2 LCD | Shows the verdict on the coach wall |
+| 3 | DHT11 | Temperature and humidity → head X |
+| 4 | MQ-2 · MQ-135 | Gas and smoke → head Y · CO₂ and air-quality gases → head Z |
+| 5 | Plantower PMS7003 | PM1.0, PM2.5 and PM10 → head W |
+| 6 | Relay board | Active-low relays behind the ozone interlock |
+| 7 | Exhaust fan | Ventilation, switched by head X |
+| 8 | Two ozone generators | Purification, only when the interlock allows |
+
+<sub>Unlabelled photo: [`docs/hardware-prototype.jpg`](docs/hardware-prototype.jpg). Parts, wiring and pins: [`HARDWARE.md`](HARDWARE.md).</sub>
+
+---
+
+## 🖥️ The dashboard, live on AWS
+
+### Live cabin
+
+<img src="docs/screenshots/live.png" width="100%" alt="Live page fed from AWS IoT Core: CPCB AQI gauge, the coach-wall LCD, the four Random-Forest heads with the gas heads fired, and the relays with ozone blocked by the interlock while the exhaust fan runs">
+
+<sub>Coach B2 over AWS IoT Core: the AQI gauge on the CPCB scale, the coach-wall LCD, the four Random-Forest heads served by AWS Lambda, and the relays. The gas heads have fired, so the model asked for ozone; the interlock blocked it because the cabin is occupied, and the exhaust fan runs instead.</sub>
+
+### The AWS pipeline, with live numbers
+
+<img src="docs/screenshots/aws-pipeline.png" width="100%" alt="System page, Cloud tab: the AWS architecture from the device through IoT Core, Lambda, DynamoDB, EventBridge and Step Functions to the dashboard, with live numbers">
+
+<sub>System page, Cloud tab: every box is a deployed AWS service, with live numbers from CloudWatch and DynamoDB.</sub>
+
+### Bad-day playbook on AWS Step Functions
+
+<img src="docs/screenshots/bad-day-playbook.png" width="100%" alt="A real Step Functions run of the bad-day playbook with every step succeeded, the English and Hindi announcement with Amazon Polly audio, the SNS staff alert and the incident report">
+
+<sub>A real run from our deployment: the announcement in English and Hindi with Amazon Polly audio, the SNS staff alert and the incident report in S3.</sub>
+
+### Route map with pollution-zone geofences
+
+<img src="docs/screenshots/fleet-map.png" width="100%" alt="Fleet page: Amazon Location map of the route from New Delhi to Prayagraj with the pollution-zone geofences and the train">
+
+<sub>Fleet page: Amazon Location tracks coach B2 from New Delhi to Prayagraj. Entering a pollution-zone geofence boosts ventilation before the cabin air turns.</sub>
+
+---
+
+## ⚙️ How it works
 
 ### On the coach
 
@@ -131,33 +200,35 @@ Each head is a `RandomForestClassifier` (100 trees) trained on `python code/TK17
 
 ---
 
-## Repository layout
+## 📁 Repository layout
 
 ```
 .
-├── README.md                     you are here
-├── AWS.md                        every AWS service and its job
-├── HARDWARE.md                   parts, wiring, pins, serial protocol
+├── README.md                         you are here
+├── AWS.md                            every AWS service and its job
+├── HARDWARE.md                       parts, wiring, pins, serial protocol
 ├── docs/
 │   ├── BreatheIQ-Team-Purity.pptx    the presentation
-│   └── screenshots/                  images used above
-├── ardunio code/                 Arduino Mega firmware
-├── python code/                  final.py (serial bridge + 4 Random-Forest heads), TK172529.xlsx
-├── breatheiq/                    web dashboard (React 19, TypeScript, Vite, Tailwind CSS v4)
-│   ├── src/sim/                  AQI maths, model heads, simulation engine (also runs in the cloud)
-│   ├── src/cloud/                AWS IoT source, Cognito credentials, SigV4, API client
-│   ├── src/ask/                  Ask BreatheIQ assistant and Knowledge Base documents
-│   └── src/pages/                Live · Fleet · Exposure · ML Lab · Controls · System · Playbook
-├── infra/                        AWS CDK app (TypeScript)
-│   ├── lib/                      BreatheiqCore · BreatheiqWeb · BreatheiqBedrock stacks
-│   ├── lambda/                   simulator, process-frame, rf-inference, api, chat, playbook, agent actions, geofence
-│   └── training/                 training script, data, bootstrap forest
-└── scripts/                      deploy, post-deploy config, train, publish, teardown
+│   ├── hardware-prototype*.jpg       photos of the prototype (plain and labelled)
+│   ├── logo.png                      the BreatheIQ mark
+│   └── screenshots/                  dashboard screenshots used above
+├── ardunio code/                     Arduino Mega firmware
+├── python code/                      final.py (serial bridge + 4 Random-Forest heads), TK172529.xlsx
+├── breatheiq/                        web dashboard (React 19, TypeScript, Vite, Tailwind CSS v4)
+│   ├── src/sim/                      AQI maths, model heads, simulation engine (also runs in the cloud)
+│   ├── src/cloud/                    AWS IoT source, Cognito credentials, SigV4, API client
+│   ├── src/ask/                      Ask BreatheIQ assistant and Knowledge Base documents
+│   └── src/pages/                    Live · Fleet · Exposure · ML Lab · Controls · System · Playbook
+├── infra/                            AWS CDK app (TypeScript)
+│   ├── lib/                          BreatheiqCore · BreatheiqWeb · BreatheiqBedrock stacks
+│   ├── lambda/                       simulator, process-frame, rf-inference, api, chat, playbook, agent actions, geofence
+│   └── training/                     training script, data, bootstrap forest
+└── scripts/                          deploy, post-deploy config, train, publish, teardown
 ```
 
 ---
 
-## Run it
+## 🚀 Run it
 
 ### 1. Dashboard on your laptop (works offline)
 
@@ -214,7 +285,7 @@ The coach's AWS IoT Core certificate is stored in SSM Parameter Store under `/br
 
 ---
 
-## Built with
+## 🧰 Built with
 
 | Layer | Technology |
 |---|---|
@@ -225,7 +296,7 @@ The coach's AWS IoT Core certificate is stored in SSM Parameter Store under `/br
 | Generative AI | Amazon Bedrock (Converse API, Agents, Knowledge Bases on S3 Vectors, Guardrails), Amazon Polly, Amazon Translate, Amazon SNS |
 | Dashboard | React 19, TypeScript, Vite, Tailwind CSS v4, Recharts, Framer Motion, Zustand, MapLibre GL, MQTT.js, Web Serial API |
 
-## Standards referenced
+## 📏 Standards referenced
 
 - **CPCB National Air Quality Index** (India): AQI from PM2.5 and PM10 sub-indices
 - **WHO Air Quality Guidelines 2021**: PM2.5 15 µg/m³, PM10 45 µg/m³ (24-hour)
@@ -234,9 +305,11 @@ The coach's AWS IoT Core certificate is stored in SSM Parameter Store under `/br
 - **GB/T 18801-2015**: air purifier performance
 - **ASHRAE 41.1 / ISO 7726**: temperature measurement
 
-## Roadmap
+## 🗺️ Roadmap
 
 - Forward PM2.5 and PM10 in the serial frame (the firmware sends PM1.0 today).
 - Occupancy sensing in the coach, so the ozone interlock runs on a measured signal.
 - Publish from the ESP8266 straight to AWS IoT Core with the coach certificate.
 - One sensor node per coach, feeding the Fleet view.
+
+<p align="center"><sub>BreatheIQ · Team Purity · YGJPRG</sub></p>
