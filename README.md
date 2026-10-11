@@ -8,7 +8,7 @@
 |---|---|
 | **Live dashboard** | **https://main.d3abjrsxzx174i.amplifyapp.com** |
 | **Presentation (PPT)** | [`docs/BreatheIQ-Team-Purity.pptx`](docs/BreatheIQ-Team-Purity.pptx) |
-| **90-second demo script** | [`breatheiq/docs/DEMO_SCRIPT.md`](breatheiq/docs/DEMO_SCRIPT.md) |
+| **Presentation script (1:20)** | [`breatheiq/docs/DEMO_SCRIPT.md`](breatheiq/docs/DEMO_SCRIPT.md) |
 | **Every AWS service and why** | [`AWS.md`](AWS.md) |
 | **Hardware build and wiring** | [`HARDWARE.md`](HARDWARE.md) |
 
@@ -149,7 +149,7 @@ Each head is a `RandomForestClassifier` (100 trees) trained on `python code/TK17
 │   ├── src/cloud/                AWS IoT source, Cognito credentials, SigV4, API client
 │   ├── src/ask/                  Ask BreatheIQ assistant and Knowledge Base documents
 │   ├── src/pages/                Live · Fleet · Exposure · ML Lab · Controls · System · Playbook
-│   └── docs/DEMO_SCRIPT.md       90-second demo script
+│   └── docs/DEMO_SCRIPT.md       1:20 presentation script, click by click
 ├── infra/                        AWS CDK app (TypeScript)
 │   ├── lib/                      BreatheiqCore · BreatheiqWeb · BreatheiqBedrock stacks
 │   ├── lambda/                   simulator, process-frame, rf-inference, api, chat, playbook, agent actions, geofence
